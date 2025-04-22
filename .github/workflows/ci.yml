@@ -34,3 +34,14 @@ jobs:
 
       - name: Clean up SSH
         run: rm -rf ~/.ssh
+
+        - name: Run tests
+        run: npm test -- --passWithNoTests
+
+        - name: Backup database
+  run: |
+    ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} << 'EOF'
+      cd ${{ secrets.WORK_DIR }}
+      docker exec <nom-conteneur-db> pg_dump -U user mydb > backup_$(date +%F).sql
+    EOF  
+    

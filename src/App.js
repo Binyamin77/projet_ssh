@@ -20,6 +20,11 @@ function App() {
       </header>
     </div>
   );
+  return (
+    <div className="App">
+      <h1>Bonjour, ceci est un test !</h1>
+    </div>
+  ); 
 }
 
 export default App;
